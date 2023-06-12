@@ -1,3 +1,165 @@
 [submodule "zephyr"]
 	path = zephyr
 	url = https://github.com/zephyrproject-rtos/zephyr
+[submodule "modules/fs/fatfs"]
+	path = modules/fs/fatfs
+	url = https://github.com/zephyrproject-rtos/fatfs
+[submodule "modules/fs/littlefs"]
+	path = modules/fs/littlefs
+	url = https://github.com/zephyrproject-rtos/littlefs
+[submodule "bootloader/mcuboot"]
+	path = bootloader/mcuboot
+	url = https://github.com/zephyrproject-rtos/mcuboot
+[submodule "tools/net-tools"]
+	path = tools/net-tools
+	url = https://github.com/zephyrproject-rtos/net-tools
+[submodule "modules/bsim_hw_models/nrf_hw_models"]
+	path = modules/bsim_hw_models/nrf_hw_models
+	url = https://github.com/zephyrproject-rtos/nrf_hw_models
+[submodule "modules/audio/sof"]
+	path = modules/audio/sof
+	url = https://github.com/zephyrproject-rtos/sof
+[submodule "tools/edtt"]
+	path = tools/edtt
+	url = https://github.com/zephyrproject-rtos/edtt
+[submodule "modules/crypto/mbedtls"]
+	path = modules/crypto/mbedtls
+	url = https://github.com/zephyrproject-rtos/mbedtls
+[submodule "modules/hal/infineon"]
+	path = modules/hal/infineon
+	url = https://github.com/zephyrproject-rtos/hal_infineon
+[submodule "modules/hal/stm32"]
+	path = modules/hal/stm32
+	url = https://github.com/zephyrproject-rtos/hal_stm32
+[submodule "modules/hal/altera"]
+	path = modules/hal/altera
+	url = https://github.com/zephyrproject-rtos/hal_altera
+[submodule "modules/hal/microchip"]
+	path = modules/hal/microchip
+	url = https://github.com/zephyrproject-rtos/hal_microchip
+[submodule "modules/hal/espressif"]
+	path = modules/hal/espressif
+	url = https://github.com/zephyrproject-rtos/hal_espressif
+[submodule "modules/hal/telink"]
+	path = modules/hal/telink
+	url = https://github.com/zephyrproject-rtos/hal_telink
+[submodule "modules/hal/rpi_pico"]
+	path = modules/hal/rpi_pico
+	url = https://github.com/zephyrproject-rtos/hal_rpi_pico
+[submodule "modules/hal/cmsis"]
+	path = modules/hal/cmsis
+	url = https://github.com/zephyrproject-rtos/cmsis
+[submodule "modules/hal/quicklogic"]
+	path = modules/hal/quicklogic
+	url = https://github.com/zephyrproject-rtos/hal_quicklogic
+[submodule "modules/hal/openisa"]
+	path = modules/hal/openisa
+	url = https://github.com/zephyrproject-rtos/hal_openisa
+[submodule "modules/hal/nordic"]
+	path = modules/hal/nordic
+	url = https://github.com/zephyrproject-rtos/hal_nordic
+[submodule "modules/hal/ti"]
+	path = modules/hal/ti
+	url = https://github.com/zephyrproject-rtos/hal_ti
+[submodule "modules/hal/atmel"]
+	path = modules/hal/atmel
+	url = https://github.com/zephyrproject-rtos/hal_atmel
+[submodule "modules/hal/ethos_u"]
+	path = modules/hal/ethos_u
+	url = https://github.com/zephyrproject-rtos/hal_ethos_u
+[submodule "modules/hal/nxp"]
+	path = modules/hal/nxp
+	url = https://github.com/zephyrproject-rtos/hal_nxp
+[submodule "modules/hal/silabs"]
+	path = modules/hal/silabs
+	url = https://github.com/zephyrproject-rtos/hal_silabs
+[submodule "modules/hal/xtensa"]
+	path = modules/hal/xtensa
+	url = https://github.com/zephyrproject-rtos/hal_xtensa
+[submodule "modules/hal/st"]
+	path = modules/hal/st
+	url = https://github.com/zephyrproject-rtos/hal_st
+[submodule "modules/hal/libmetal"]
+	path = modules/hal/libmetal
+	url = https://github.com/zephyrproject-rtos/libmetal
+[submodule "modules/hal/wurthelektronik"]
+	path = modules/hal/wurthelektronik
+	url = https://github.com/zephyrproject-rtos/hal_wurthelektronik
+[submodule "modules/hal/gigadevice"]
+	path = modules/hal/gigadevice
+	url = https://github.com/zephyrproject-rtos/hal_gigadevice
+[submodule "modules/hal/renesas"]
+	path = modules/hal/renesas
+	url = https://github.com/zephyrproject-rtos/hal_renesas
+[submodule "modules/hal/nuvoton"]
+	path = modules/hal/nuvoton
+	url = https://github.com/zephyrproject-rtos/hal_nuvoton
+[submodule "modules/lib/nanopb"]
+	path = modules/lib/nanopb
+	url = https://github.com/zephyrproject-rtos/nanopb
+[submodule "modules/lib/tflite-micro"]
+	path = modules/lib/tflite-micro
+	url = https://github.com/zephyrproject-rtos/tflite-micro
+[submodule "modules/lib/loramac-node"]
+	path = modules/lib/loramac-node
+	url = https://github.com/zephyrproject-rtos/loramac-node
+[submodule "modules/lib/picolibc"]
+	path = modules/lib/picolibc
+	url = https://github.com/zephyrproject-rtos/picolibc
+[submodule "modules/lib/open-amp"]
+	path = modules/lib/open-amp
+	url = https://github.com/zephyrproject-rtos/open-amp
+[submodule "modules/lib/zcbor"]
+	path = modules/lib/zcbor
+	url = https://github.com/zephyrproject-rtos/zcbor
+[submodule "modules/lib/thrift"]
+	path = modules/lib/thrift
+	url = https://github.com/zephyrproject-rtos/thrift
+[submodule "modules/lib/gui/lvgl"]
+	path = modules/lib/gui/lvgl
+	url = https://github.com/zephyrproject-rtos/lvgl
+[submodule "modules/lib/zscilib"]
+	path = modules/lib/zscilib
+	url = https://github.com/zephyrproject-rtos/zscilib
+[submodule "modules/lib/uoscore-uedhoc"]
+	path = modules/lib/uoscore-uedhoc
+	url = https://github.com/zephyrproject-rtos/uoscore-uedhoc
+[submodule "modules/lib/chre"]
+	path = modules/lib/chre
+	url = https://github.com/zephyrproject-rtos/chre
+[submodule "modules/lib/liblc3"]
+	path = modules/lib/liblc3
+	url = https://github.com/zephyrproject-rtos/liblc3
+[submodule "modules/lib/openthread"]
+	path = modules/lib/openthread
+	url = https://github.com/zephyrproject-rtos/openthread
+[submodule "modules/lib/canopennode"]
+	path = modules/lib/canopennode
+	url = https://github.com/zephyrproject-rtos/canopennode
+[submodule "modules/lib/lz4"]
+	path = modules/lib/lz4
+	url = https://github.com/zephyrproject-rtos/lz4
+[submodule "modules/debug/segger"]
+	path = modules/debug/segger
+	url = https://github.com/zephyrproject-rtos/segger
+[submodule "modules/debug/TraceRecorder"]
+	path = modules/debug/TraceRecorder
+	url = https://github.com/zephyrproject-rtos/TraceRecorderSource
+[submodule "modules/debug/mipi-sys-t"]
+	path = modules/debug/mipi-sys-t
+	url = https://github.com/zephyrproject-rtos/mipi-sys-t
+[submodule "modules/tee/tf-a/trusted-firmware-a"]
+	path = modules/tee/tf-a/trusted-firmware-a
+	url = https://github.com/zephyrproject-rtos/trusted-firmware-a
+[submodule "modules/tee/tf-m/psa-arch-tests"]
+	path = modules/tee/tf-m/psa-arch-tests
+	url = https://github.com/zephyrproject-rtos/psa-arch-tests
+[submodule "modules/tee/tf-m/tf-m-tests"]
+	path = modules/tee/tf-m/tf-m-tests
+	url = https://github.com/zephyrproject-rtos/tf-m-tests
+[submodule "modules/tee/tf-m/trusted-firmware-m"]
+	path = modules/tee/tf-m/trusted-firmware-m
+	url = https://github.com/zephyrproject-rtos/trusted-firmware-m
+[submodule "modules/crypto/tinycrypt"]
+	path = modules/crypto/tinycrypt
+	url = https://github.com/zephyrproject-rtos/tinycrypt

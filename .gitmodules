@@ -1,6 +1,6 @@
 [submodule "zephyr"]
 	path = zephyr
-	url = https://github.com/zephyrproject-rtos/zephyr
+	url = https://github.com/rcalvom/zephyr
 [submodule "modules/fs/fatfs"]
 	path = modules/fs/fatfs
 	url = https://github.com/zephyrproject-rtos/fatfs

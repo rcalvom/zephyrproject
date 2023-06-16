@@ -1,0 +1,1 @@
+int print_output(void *p, int len);

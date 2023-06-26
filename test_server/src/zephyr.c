@@ -25,3 +25,20 @@ int zephyr_accept(int fd, unsigned short int *port){
     *port = client_addr.sin_port;
     return result;
 }
+
+int zephyr_connect(int fd, unsigned int *addr){
+    return zsock_connect(fd, &addr, sizeof(unsigned int));
+}
+
+int zephyr_read(int fd){
+    char buf[128];
+    return zsock_recv(fd, buf, sizeof(buf), 0);
+}
+
+int zephyr_write(int fd, void* buffer, unsigned long size){
+    return zsock_send(fd, buffer, size, 0);
+}
+
+int zephyr_close(int fd){
+    return zsock_close(fd);
+}

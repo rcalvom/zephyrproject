@@ -10,5 +10,3 @@
 
 
 #include "log.h"
-
-void network_interface_init(void);

@@ -113,9 +113,12 @@ struct packetdrill_syscalls {
     int (*read_syscall)(int index);
     int (*close_syscall)(int index);
     int (*init_syscall)(void);
+    int (*accepted_callback)(void);
 };
 
-typedef void (*packetdrill_run_syscalls_fn)(struct packetdrill_syscalls*);
+//typedef void (*packetdrill_run_syscalls_fn)(struct packetdrill_syscalls*);
+void run_syscalls(struct packetdrill_syscalls *interface);
+
 
 
 #endif /*__PORTABILITY_LAYER_H__*/

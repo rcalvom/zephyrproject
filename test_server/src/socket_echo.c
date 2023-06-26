@@ -1,5 +1,4 @@
 #include <zephyr/kernel.h>
-#include <dlfcn.h>
 
 #include "portability_layer.h"
 #include "netif.h"
@@ -20,7 +19,7 @@ int reset_socket_array(void){
         int counter;
         for (counter = 3; counter < socketCounter; counter++) {
             int *pcb = &socketArray[counter];
-            //z_impl_zsock_close(*pcb);
+            zephyr_close(*pcb);
         }
         memset(socketArray, 0, MAX_SOCKET_ARRAY * sizeof(int));
     }
@@ -44,6 +43,7 @@ int socket_syscall(int domain){
         return socketCounter++;
     }
 }
+
 int bind_syscall(int index, unsigned short int port){
     printk("Socket bind in Zephyr\n");
     //struct sockaddr_in bind_addr;
@@ -59,6 +59,7 @@ int bind_syscall(int index, unsigned short int port){
         return 0;
     }
 }
+
 int listen_syscall(int index){
     printk("Socket listen in Zephyr\n");
     int serv = socketArray[index];
@@ -106,6 +107,8 @@ struct SyscallResponsePackage accept_syscall(int index){
     }
     syscallResponse.result = response;
     syscallResponse.acceptResponse = acceptResponse;
+    k_sleep(K_MSEC(50));
+    //k_yield();
     return syscallResponse;
 }
 
@@ -115,18 +118,19 @@ int connect_syscall(int index, struct in_addr address, unsigned short int port){
     struct in_addr dest_ipaddr;
     int serv = socketArray[index];
     memcpy(&dest_ipaddr, &address, sizeof(struct in_addr));
-    if (connect(serv, &address, sizeof(struct in_addr)) < 0) {
-        printk("Error in \"socket_connect\" instruction");
+    if (zephyr_connect(serv, &address) < 0) {
+        printk("Error in \"socket_connect\" instruction\n");
         return -1;
     } else {
         return 0;
     }
     return 0;
 }
+
 int read_syscall(int index){
-    char buf[128];
+    printk("Socket connect in Zephyr\n");
     int serv = socketArray[index];
-    int len = recv(serv, buf, sizeof(buf), 0);
+    int len = zephyr_read(serv);
     if (len < 0) {
         printk("Error in \"socket_read\" instruction");
         return -1;
@@ -134,9 +138,10 @@ int read_syscall(int index){
     return 0;
 }
 int write_syscall(int index, void *buffer, unsigned long size){
+    printk("Socket connect in Zephyr\n");
     int response;
     int serv = socketArray[index];
-    response = send(serv, buffer, size, 0);
+    response = zephyr_write(serv, buffer, size);
     if (response < 0) {
         printk("Error in \"socket_write\" instruction");
         return -1;
@@ -144,21 +149,26 @@ int write_syscall(int index, void *buffer, unsigned long size){
     return 0;
 }
 int close_syscall(int index){
-    z_impl_zsock_close(socketArray[index]);
+    zephyr_close(socketArray[index]);
     return 0;
 }
 int init_syscall(){
     return reset_socket_array();
 }
 
+int accepted_callback(){
+    k_sleep(K_MSEC(1000));
+    k_yield();
+    return 0;
+}
+
 void main(void){
-    network_interface_init();
-    void *handle = dlopen(getenv("PORTABILITY_LAYER_PATH"), RTLD_NOW | RTLD_LOCAL | RTLD_NODELETE);
+    /*void *handle = dlopen(getenv("PORTABILITY_LAYER_PATH"), RTLD_NOW | RTLD_LOCAL | RTLD_NODELETE);
     if(handle == NULL){
 		const char* error = dlerror();
         printk("Error importing portability layer %s\n", error);
-    }
-    packetdrill_run_syscalls_fn run_syscalls = dlsym(handle, "run_syscalls");
+    }*/
+    //packetdrill_run_syscalls_fn run_syscalls = dlsym(handle, "run_syscalls");
     struct packetdrill_syscalls args;
     args.socket_syscall = socket_syscall;
     args.bind_syscall = bind_syscall;
@@ -169,6 +179,7 @@ void main(void){
     args.read_syscall = read_syscall;
     args.close_syscall = close_syscall;
     args.init_syscall = init_syscall;
+    args.accepted_callback = accepted_callback;
     run_syscalls(&args);
 }
 

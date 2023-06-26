@@ -80,19 +80,26 @@ int print_output(void *p, int len){
     return len;
 }
 
-void* consumer_thread(void* args){
-    pcap_t *interface_handler = args;
-    int ret;
-    for(;;) {
-        unsigned char name[6] = {'m', 'y' , 'd', 'a', 't', 'a'};
-        ret = pcap_dispatch(interface_handler, 1, pcap_callback, name);
-        if(ret == -1) {
-            log_error("pcap_dispatch error received: %s\n", pcap_geterr(interface_handler));
-        }
+int read_input(void *buf, unsigned long buf_len){
+    unsigned char* buffer = buf;
+    struct pcap_pkthdr *header;
+    const unsigned char *packet;
+    int res = pcap_next_ex(interface, &header, &packet);
+    if(res == 0){
+        return 0;
+    }
+    for(int i = 0; i < header->caplen; i++){
+        *(buffer + i) = *(packet + i);
+    }
+    
+    if(res == 1){
+        return header->len;
+    }else{
+        return 0;
     }
 }
 
-void network_interface_init(void){
+int network_interface_init(void){
     char* interface_name = getenv("TAP_INTERFACE_NAME");
     pcap_t *interface_handler = open_interface(interface_name);
     interface = interface_handler;
@@ -100,8 +107,11 @@ void network_interface_init(void){
         log_error("Error opening interface \"%s\"", getenv("TAP_INTERFACE_NAME"));
         exit(EXIT_FAILURE);
     }
-    pthread_t thread;
-    if(pthread_create(&thread, NULL, consumer_thread, interface_handler) < 0){
-        log_error("Error starting consumer thread");
-    }
+    char errbuf[PCAP_ERRBUF_SIZE];
+    if (pcap_setnonblock(interface, 1, errbuf) == -1) {
+        log_error("Error setting non-blocking mode: %s\n", errbuf);
+        exit(EXIT_FAILURE);
+    }  
+    return pcap_get_selectable_fd(interface_handler);
 }
+

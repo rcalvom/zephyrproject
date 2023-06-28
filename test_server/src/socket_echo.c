@@ -156,19 +156,25 @@ int init_syscall(){
     return reset_socket_array();
 }
 
+int listened_callback(){
+    k_sleep(K_MSEC(800));
+    k_yield();
+    return 0;
+}
+
 int accepted_callback(){
-    k_sleep(K_MSEC(1000));
+    k_sleep(K_MSEC(800));
+    k_yield();
+    return 0;
+}
+
+int closed_callback(){
+    k_sleep(K_MSEC(800));
     k_yield();
     return 0;
 }
 
 void main(void){
-    /*void *handle = dlopen(getenv("PORTABILITY_LAYER_PATH"), RTLD_NOW | RTLD_LOCAL | RTLD_NODELETE);
-    if(handle == NULL){
-		const char* error = dlerror();
-        printk("Error importing portability layer %s\n", error);
-    }*/
-    //packetdrill_run_syscalls_fn run_syscalls = dlsym(handle, "run_syscalls");
     struct packetdrill_syscalls args;
     args.socket_syscall = socket_syscall;
     args.bind_syscall = bind_syscall;
@@ -180,6 +186,8 @@ void main(void){
     args.close_syscall = close_syscall;
     args.init_syscall = init_syscall;
     args.accepted_callback = accepted_callback;
+    args.listened_callback = listened_callback;
+    args.closed_callback = closed_callback;
     run_syscalls(&args);
 }
 

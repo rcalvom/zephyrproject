@@ -120,6 +120,12 @@ void run_syscalls(struct packetdrill_syscalls *interface){
             if(strcmp(syscallPackage.syscallId, "socket_accept") == 0){
                 result = interface->accepted_callback();
             }
+            if(strcmp(syscallPackage.syscallId, "socket_listen") == 0){
+                result = interface->listened_callback();
+            }
+            if(strcmp(syscallPackage.syscallId, "socket_close") == 0){
+                result = interface->closed_callback();
+            }
         }
         if(numRead == 0){
             log_info("Execution completed!");

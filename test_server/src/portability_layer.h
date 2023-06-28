@@ -114,6 +114,9 @@ struct packetdrill_syscalls {
     int (*close_syscall)(int index);
     int (*init_syscall)(void);
     int (*accepted_callback)(void);
+    int (*listened_callback)(void);
+    int (*closed_callback)(void);
+
 };
 
 //typedef void (*packetdrill_run_syscalls_fn)(struct packetdrill_syscalls*);
